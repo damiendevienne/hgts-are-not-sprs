@@ -122,12 +122,14 @@ GO<-function(Ntotal=1000, N=5, Ntransf=5, birth=1, death=0, plot=TRUE) {
 # }
 
 
-#################################################################################################
-###                                                                                           ###
-### THE PLOTING FUNCTION IS BELOW. IT READS THE FILE "allresults" AND DO THE PLOT WITH GGPLOT ###
-### (uncomment to execute)                                                                    ###
-###                                                                                           ###
-#################################################################################################
+####################################################################################################
+###                                                                                              ###
+### THE PLOTING FUNCTIONS ARE BELOW. IT READS THE FILE "allresults" AND DO THE PLOTS WITH GGPLOT ###
+### (uncomment to execute)                                                                       ###
+###                                                                                              ###
+####################################################################################################
+
+###PLOT 1: barplot of proportion of errors
 
 # require(ggplot2)
 
@@ -141,4 +143,16 @@ GO<-function(Ntotal=1000, N=5, Ntransf=5, birth=1, death=0, plot=TRUE) {
 
 ## do the plot
 # ggplot(df, aes(x=factor(nbspecies), y=perctopodiff, fill=factor(nbtransf)), color=factor(nbspecies)) + geom_bar(stat="identity", position=position_dodge()) + xlab("Percentage of species sampled (out of 10000)")+ylab("Proportion of simulations where\ninduced and sampled gene trees differ topologically") + ylim(0,1) + labs(fill="Number of simulated transfers\nto non-ghost recipients")+scale_fill_brewer(palette="Spectral") + scale_x_discrete(labels = c("0.5%", "1%","5%","10%"))+theme(axis.text=element_text(size=11), text=element_text(size=13))
+
+###PLOT 2: jitterplot with RF distances between true and induced trees
+# res<-as.matrix(read.table("allresults.txt"))
+# DF<-NULL
+# for (i in 1:nrow(res)) {
+# 	DF<-rbind(DF, cbind(res[i,1], res[i,2], res[i,3:102]))
+# }
+# DF<-as.data.frame(DF)
+# colnames(DF)<-c("Nspecies","Ntransf","RF")
+
+## do the plot
+# ggplot(DF, aes(x=factor(Nspecies),y=RF, colour=factor(Ntransf))) + geom_point(position=position_jitterdodge(dodge.width=0.5)) + xlab("Percentage of species sampled (out of 10000)") + ylab("RF distance between true and induced gene trees") + labs(colour="Transfers") + scale_color_brewer(palette="Spectral") + scale_x_discrete(labels = c("0.5%", "1%","5%","10%"), expand = expansion(add = c(0.5, 0.5))) + theme(axis.text=element_text(size=11), text=element_text(size=13))
 
