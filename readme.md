@@ -1,4 +1,4 @@
-# Code and data associated with the article "HGTs are not SPRs..." by Tannier, Tricou, and de Vienne.
+# Code and data associated with the article "HGTs are not SPRs..." by Tannier T., Tricou T., Benali S. and de Vienne DM.
 
 Here are the functions (R language) used for performing the simulations associated with the article "HGTs are not SPRs: In the presence of ghost lineages, series of Horizontal Gene Transfers do not result in series of Subtree Pruning and Regrafting", and the data produced with these functions (file `allresults`). 
 
